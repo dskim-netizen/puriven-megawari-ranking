@@ -11,6 +11,12 @@ const HEADERS = {
   'X-Requested-With': 'XMLHttpRequest',
 };
 const KEEP_IN_INDEX = 300;
+const END = new Date('2026-12-03T02:00:00+09:00');   // 메가와리 종료 후에는 수집하지 않음
+
+if (new Date() > END) {
+  console.log('메가와리 기간이 끝나서 수집하지 않습니다.');
+  process.exit(0);
+}
 
 async function fetchGroup(group) {
   let lastErr;
