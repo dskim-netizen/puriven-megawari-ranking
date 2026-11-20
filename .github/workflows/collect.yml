@@ -1,0 +1,29 @@
+name: 메가와리 랭킹 수집
+on:
+  schedule:
+    - cron: '7 * * * *'   # 매시 7분. GitHub 사정으로 몇 분~십여 분 늦게 돌 수 있음
+  workflow_dispatch:
+  push:
+    paths: ['scripts/collect.mjs', '.github/workflows/collect.yml']
+permissions:
+  contents: write
+concurrency:
+  group: collect
+  cancel-in-progress: false
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: node scripts/collect.mjs
+      - name: 저장
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          git commit -m "랭킹 수집 $(date -u +%Y-%m-%dT%H:%MZ)" || exit 0
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done
