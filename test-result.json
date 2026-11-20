@@ -1,0 +1,32 @@
+{
+  "testedAt": "2026-11-20T08:50:31.003Z",
+  "checks": [
+    {
+      "group": 0,
+      "status": 200,
+      "length": 231096,
+      "head": "{\"d\":{\"__type\":\"GMKT.INC.Elysium.DataModel.Mapix.PromotionRankingResponse\",\"resultCode\":1000,\"firstItem\":{\"gdNm\":\"【お気に入り登録必須/20日10時発売開始】Nanaコラボ 冬の乾燥に負けるな!!セット メガ割限定 スキンケア セラミド クリーム ミスト 化粧水 乳液 エストラ アトバリア 保湿クリーム\",\"imageUrl\":\"https://gd.image-qoo10.jp/li/954/620/8545620954.g_400-w-st_g.jpg\",\"connectUrl",
+      "items": 99,
+      "sample": [
+        "2 ロムアンド",
+        "3 AESTURA",
+        "4 スキンアンドラブ"
+      ],
+      "ok": true
+    },
+    {
+      "group": 5,
+      "status": 200,
+      "length": 223102,
+      "head": "{\"d\":{\"__type\":\"GMKT.INC.Elysium.DataModel.Mapix.PromotionRankingResponse\",\"resultCode\":1000,\"firstItem\":{\"gdNm\":\"【公式】韓国1位 プレミアム大容量ディフューザー 500ml×2本[hetras/へトラス]\",\"imageUrl\":\"https://gd.image-qoo10.jp/li/997/697/8545697997.g_400-w-st_g.jpg\",\"connectUrl\":\"/gmkt.inc/Goods/goods.aspx?goodscode=109436642",
+      "items": 99,
+      "sample": [
+        "2 ヘトラス",
+        "3 ヘトラス",
+        "4 euthymol"
+      ],
+      "ok": true
+    }
+  ],
+  "ok": true
+}
