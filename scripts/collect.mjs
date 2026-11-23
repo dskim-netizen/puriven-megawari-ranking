@@ -53,6 +53,23 @@ async function fetchGroup(group) {
   throw lastErr;
 }
 
+// GitHub 정시 실행은 자주 늦거나 빠지므로 15분마다 깨우고, 이번 시(한국 시간)에 이미 저장했으면 건너뜀
+const hourKey = d => new Date(new Date(d).getTime() + 9 * 3600e3).toISOString().slice(0, 13);
+{
+  const idxPath0 = 'data/index.json';
+  if (existsSync(idxPath0) && process.env.FORCE !== '1') {
+    const files0 = JSON.parse(readFileSync(idxPath0, 'utf8')).files || [];
+    const last = files0[files0.length - 1];
+    if (last) {
+      const lastIso = last.replace(/\.json$/, '').replace(/T(\d\d)-(\d\d)-(\d\d)-(\d+)Z/, 'T$1:$2:$3.$4Z');
+      if (hourKey(lastIso) === hourKey(new Date())) {
+        console.log('이번 시간은 이미 수집됨:', last);
+        process.exit(0);
+      }
+    }
+  }
+}
+
 const fetchedAt = new Date().toISOString();
 const snap = { fetchedAt, g0: await fetchGroup(0), g5: await fetchGroup(5) };
 const name = fetchedAt.replace(/[:.]/g, '-') + '.json';

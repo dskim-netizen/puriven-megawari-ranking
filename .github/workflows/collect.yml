@@ -1,7 +1,7 @@
 name: 메가와리 랭킹 수집
 on:
   schedule:
-    - cron: '7 * * * *'   # 매시 7분. GitHub 사정으로 몇 분~십여 분 늦게 돌 수 있음
+    - cron: '2,17,32,47 * * * *'   # 15분마다 깨우되, 한 시간에 한 번만 저장 (GitHub 정시 실행이 자주 늦거나 빠져서)
   workflow_dispatch:
   push:
     paths: ['scripts/collect.mjs', '.github/workflows/collect.yml']
